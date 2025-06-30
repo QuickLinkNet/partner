@@ -1,0 +1,92 @@
+<?php
+$content[] = '    <div id="login-wrapper" style="display:'.$this->login.'">';
+$content[] = '      <div id="login">';
+$content[] = '        <div class="label">Login</div>';
+$content[] = '        <div class="icon-holder">';
+$content[] = '          <div class="icon"></div>';
+$content[] = '        </div>';
+$content[] = '        <form action="" name="log_form" method="post">';
+$content[] = '          <div id="login-inner">';
+
+if(isset($this->login_error) && $this->login_error != '') {
+	$content[] = '          <div id="form-error">';
+	$content[] = '            ' . $this->login_error;
+	$content[] = '            </div>';
+}
+
+$content[] = '            <div id="login_form" style="display:block">';
+$content[] = '              <div class="fl" style="width:100%;">';
+$content[] = '                <input type="text" name="email_username" id="email_username" placeholder="E-Mail / Benutzername">';
+$content[] = '              </div>';
+$content[] = '              <div class="cb"></div>';
+$content[] = '              <div class="fl" style="width:100%;">';
+$content[] = '                <input type="password" name="pass" id="pass" value="" placeholder="Passwort">';
+$content[] = '              </div>';
+$content[] = '              <div class="cb"></div>';
+$content[] = '              <div class="fl">';
+$content[] = '                <input type="checkbox" name="cookie" id="cookie" value="true">';
+$content[] = '              </div>';
+$content[] = '              <div class="fl" style="margin:2px 0 0 5px;">';
+$content[] = '                Logindaten merken';
+$content[] = '              </div>';
+$content[] = '              <div class="cb"></div>';
+$content[] = '              <input type="hidden" name="login_send" value="">';
+//$content[] = '              <input type="hidden" name="cookie" id="cookie" value="">';
+$content[] = '              <div class="cb"></div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div id="login-now" onclick="javascript:getForm(\'login_form\');" class="login-btn cp fl">';
+$content[] = '            Login';
+$content[] = '          </div>';
+$content[] = '          <div id="get-recovery" class="login-btn cp fl">';
+$content[] = '            Password vergessen';
+$content[] = '          </div>';
+$content[] = '        </form>';
+$content[] = '        <div class="cb"></div>';
+$content[] = '      </div>';
+$content[] = '    </div>';
+
+$content[] = '    <div id="password-recovery-wrapper" style="display:'.$this->recovery.'">';
+$content[] = '      <div id="password-recovery">';
+$content[] = '        <div class="label">Passwort vergessen</div>';
+$content[] = '        <div class="icon-holder">';
+$content[] = '          <div class="icon"></div>';
+$content[] = '        </div>';
+$content[] = '        <form action="" name="recovery_form" method="post">';
+$content[] = '          <div id="password-recovery-inner">';
+
+if(isset($this->recovery_error) && $this->recovery_error != '') {
+	$content[] = '          <div id="form-error">';
+  $content[] = '            ' . $this->recovery_error;
+	$content[] = '            </div>';
+}
+
+$content[] = '            <div id="login_form" style="display:block">';
+$content[] = '              <div class="fl" style="width:100%;">';
+$content[] = '                <input type="text" name="email_username" id="email_username" placeholder="E-Mail / Benutzername">';
+$content[] = '              </div>';
+$content[] = '              <div class="cb"></div>';
+$content[] = '              <input type="hidden" name="recovery_send" id="send" value="">';
+$content[] = '              <div class="cb"></div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div id="recover_password" onclick="javascript:getForm(\'login_form\');" class="login-btn cp fl">';
+$content[] = '            Zurücksetzten';
+$content[] = '          </div>';
+$content[] = '          <div id="get-login" onclick="javascript:getForm(\'login_form\');" class="login-btn cp fl">';
+$content[] = '            Zum Login';
+$content[] = '          </div>';
+$content[] = '        </form>';
+$content[] = '        <div class="cb"></div>';
+$content[] = '      </div>';
+$content[] = '    </div>';
+
+$content[] = '    <div id="login-footer-wrapper">';
+$content[] = '      <div id="login-footer">';
+$content[] = '        <div id="login-footer-inner">';
+$content[] = '        </div>';
+$content[] = '      </div>';
+$content[] = '    </div>';
+
+
+?>

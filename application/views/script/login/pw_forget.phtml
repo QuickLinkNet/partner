@@ -1,0 +1,40 @@
+<?php
+
+$content[] = '    <div id="login">';
+$content[] = '      <div id="login-inner">';
+
+$content[] = '        <form action="" name="" method="post">';
+$content[] = '          <div id="logo_100_100_black" style="margin-bottom:25px; margin-left:48px;"></div>';
+
+
+if($this->auth == false) {
+	$content[] = '          <div id="error" class="error"><b>Error:</b> This link is not valid</div>';
+} else {
+	$content[] = '          <div id="error"></div>';
+}
+
+if($this->auth == true) {
+	$content[] = '          <div id="renew_password">';
+	$content[] = '            <div class="fl" style="width:100%;">';
+	$content[] = '              <label for="new_password">New password</label>';
+	$content[] = '              <input type="password" name="new_password" id="new_password">';
+	$content[] = '            </div>';
+	$content[] = '            <div class="cb"></div>';
+	$content[] = '            <div class="fl" style="width:100%;">';
+	$content[] = '              <label for="new_password_repeat">Repeat new password</label>';
+	$content[] = '              <input type="password" name="new_password_repeat" id="new_password_repeat" value="">';
+	$content[] = '            </div>';
+	$content[] = '            <div class="cb"></div>';
+	$content[] = '            <div class="fl" style="width:200px; margin-top:10px;">';
+	$content[] = '              <input style="width:100%;" type="button" name="set_password_btn" id="set_password_btn" class="button fr" value="Set new password">';
+	$content[] = '            </div>';
+	$content[] = '            <div class="cb"></div>';
+	$content[] = '          </div>';
+	$content[] = '          <input type="hidden" name="uid" id="uid" value="'.$this->uid.'">';
+}
+
+$content[] = '        </form>';
+$content[] = '      </div>';
+$content[] = '    </div>';
+
+?>

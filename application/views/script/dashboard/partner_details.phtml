@@ -1,0 +1,968 @@
+<?php
+
+$content[] = '<div style="display: none;">';
+$content[] = $this->aq->accepted;
+$content[] = '</div>';
+
+$content[] = '<div id="content">';
+$content[] = '  <div id="content-wrapper">';
+$content[] = '    <div id="content-inner">';
+
+$content[] = '    <div id="error_msg" class="dnone">';
+$content[] = '      <ul id="form-error">';
+$content[] = '      </ul>';
+$content[] = '    </div>';
+
+$content[] = '    <div id="success_msg" class="dnone">';
+$content[] = '      <ul id="form-success">';
+$content[] = '      </ul>';
+$content[] = '    </div>';
+
+if($this->aq && $this->iPartnerId != 25 && $this->iPartnerId != 29) {
+
+$content[] = '      <div class="sheet fl">';
+$content[] = '        <div class="sheet-icon-holder fl">';
+$content[] = '          <div class="place"></div>';
+$content[] = '        </div>';
+$content[] = '        <div class="sheet-head fl">';
+$content[] = '          Erfassung';
+$content[] = '        </div>';
+$content[] = '        <div class="cb"></div>';
+$content[] = '        <div class="sheet-head-small">';
+$content[] = '          <div class="fl" style="margin-left:75px;">Datenblatt</div>';
+$content[] = '          <div class="fl" style="margin-left:25px;">Datensatz</div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+$content[] = '        <div class="sheet-recording-body">';
+$content[] = '          <div class="head-company">'.Drunken_Companies::translateCompanyId($this->aq->companies_id).'</div>';
+$content[] = '          <hr>';
+
+if(isset($this->partner_offer) && $this->partner_offer->visible != 1) {
+  $content[] = '          <div class="sheet-left fl">';
+
+  if (isset($this->partner_offer) && $this->partner_offer->accepted == 1) {
+    $content[] = '            <div class="txt">Aktueller Status</div>';
+  }
+  $content[] = '            <div class="txt">AQ-Nummer</div>';
+  $content[] = '            <div class="txt">Anrede</div>';
+  $content[] = '            <div class="txt">Unternehmen</div>';
+  $content[] = '            <div class="txt">Ansprechpartner</div>';
+  $content[] = '            <div class="txt">Vorname</div>';
+  $content[] = '            <div class="txt">Nachname</div>';
+  $content[] = '            <div class="txt">Adresse</div>';
+  $content[] = '            <div class="txt">PLZ</div>';
+  $content[] = '            <div class="txt">ORT</div>';
+  $content[] = '            <div class="txt">Telefon</div>';
+  $content[] = '            <div class="txt">Mobil</div>';
+  $content[] = '            <div class="txt">E-Mail</div>';
+  $content[] = '            <div class="txt">Info</div>';
+  $content[] = '          </div>';
+  $content[] = '          <div class="sheet-right fl">';
+  if (isset($this->partner_offer) && $this->partner_offer->accepted == 1) {
+    $content[] = '            <div class="txt">' . Drunken_Status::translateStatusId($this->aq->current_status->status_id) . '</div>';
+  }
+  $content[] = '            <div class="txt">' . $this->aq->id . ' / ' . $this->aq->owner->id . '</div>';
+  $content[] = '            <div class="txt">' . Drunken_Salutations::translateSalutation($this->aq->owner->salutation) . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->company . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->contact_person . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->first_name . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->last_name . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->address . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->zip_code . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->city . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->phone . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->mobile . '</div>';
+  $content[] = '            <div class="txt">' . $this->aq->owner->email . '</div>';
+  $content[] = '            <div class="txt" style="height:auto;">' . $this->aq->owner->notice . '</div>';
+  $content[] = '          </div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '          <hr>';
+}
+$content[] = '          <div class="sheet-left fl">';
+$content[] = '            <div class="txt">Stellenart</div>';
+$content[] = '            <div class="txt">Adresse</div>';
+$content[] = '            <div class="txt">PLZ</div>';
+$content[] = '            <div class="txt">Ort</div>';
+$content[] = '            <div class="txt">Bundesland</div>';
+$content[] = '            <div class="txt">Mietvorschlag</div>';
+$content[] = '            <div class="txt">Vertragsdauer</div>';
+$content[] = '            <div class="txt">Notiz</div>';
+$content[] = '          </div>';
+$content[] = '          <div class="sheet-right fl">';
+$content[] = '            <div class="txt">'.Drunken_JobTypes::translateJobTypeId($this->aq->job_types_id).'</div>';
+$content[] = '            <div class="txt">'.$this->aq->address.'</div>';
+$content[] = '            <div class="txt">'.$this->aq->zip_code.'</div>';
+$content[] = '            <div class="txt">'.$this->aq->city.'</div>';
+$content[] = '            <div class="txt">'.$this->aq->state.'</div>';
+$content[] = '            <div class="txt">'.$this->aq->rent_offer.'</div>';
+$content[] = '            <div class="txt">'.$this->aq->contract_duration.'</div>';
+$content[] = '            <div class="txt" style="height:auto;">'.$this->aq->acquisition_description.'</div>';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+
+if($this->aq->current_status->status_id == 86) {
+	$content[] = '          <textarea name="description" id="description" placeholder="Status-Notiz"></textarea>';
+
+	$content[] = '          <input type="text" id="period" style="display:none;">';
+
+	$content[] = '          <select class="fl" name="status" id="status">';
+	$content[] = '            <option value="88" selected>Stellungnahme von Partner</option>';
+	$content[] = '          </select>';
+
+	$content[] = '					<div class="cb"></div>';
+
+	$content[] = '					<div class="button fl" style="margin:10px 0 0 15px;" id="save-status">Speichern</div>';
+
+	$content[] = '					<div class="cb"></div>';
+}
+
+
+$content[] = '          <input type="hidden" name="aid" id="aid" value="'.$this->aq->id.'">';
+$content[] = '        </div>';
+$content[] = '      </div>';
+
+
+/**
+ * Status-Course
+ */
+if(isset($this->partner_offer) && $this->partner_offer->accepted == 1 || Drunken_StatusCourse::checkCourseOfId($this->aq->id, 6)) {
+
+  $content[] = '      <div class="sheet fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="info"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-head fl">';
+  $content[] = '          Status';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:20px;">Datum / Uhrzeit</div>';
+  $content[] = '          <div class="fl" style="margin-left:25px;">User</div>';
+  $content[] = '          <div class="fl" style="margin-left:100px;">Status</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-status-course-body">';
+  $content[] = '          <div class="status-list">';
+
+  if($this->status_course && count($this->status_course) > 0) {
+
+      $i = 0;
+
+      foreach($this->status_course as $key => $value) {
+
+          $i % 2 == 0 ? $color = 'light-grey' : $color = '';
+
+          $i++;
+
+      	if($value->user_id != 0) {
+        	$user = Drunken_User::getUserById($value->user_id);
+        } else if($value->lawyer_contact_person_id != 0) {
+         	$user = Drunken_Lawyer_ContactPerson::getContactPersonById($value->lawyer_contact_person_id);
+        } else if($value->partner_contact_person_id != 0) {
+        	$user = Drunken_Partner_ContactPerson::getContactPersonById($value->partner_contact_person_id);
+        }
+
+          $date = new DateTime($value->datetime);
+          $date = $date->format('d.m.Y - H:i');
+
+          $content[] = '            <div class="status-row '.$color.'">';
+          $content[] = '              <div class="status-date fl">';
+          $content[] = '              </div>';
+          $content[] = '                ' . $date;
+          $content[] = '              <div class="status-user fl">';
+          $content[] = '                ' . $user->last_name . ', ' . $user->first_name;
+          $content[] = '              </div>';
+          $content[] = '              <div class="status-status fl">';
+          $content[] = '                ' . Drunken_Status::getStatusById($value->status_id);
+          $content[] = '              </div>';
+          $content[] = '              <div class="cb"></div>';
+	      	if($value->description) {
+//	          $content[] = '              <div class="status-description">';
+//	          $content[] = '                <b>Notiz:</b> ' . $value->description;
+//	          $content[] = '              </div>';
+	        }
+          $content[] = '            </div>';
+      }
+  }
+
+  $content[] = '          </div>';
+  $content[] = '        </div>';
+  $content[] = '      </div>';
+
+  $content[] = '      <div class="cb"></div>';
+
+
+  /**
+   * Images
+   */
+  $content[] = '      <div class="sheet fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="camera"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-head fl">';
+  $content[] = '          Foto Montage';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:75px;">Originalbild</div>';
+  $content[] = '          <div class="fl" style="margin-left:125px;">Angebotsbild</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-images-body">';
+  $content[] = '          <div class="original_photo fl">';
+
+  if($this->original_image) {
+    $content[] = '            <a id="original" href="'. $this->original_image .'">';
+    $content[] = '              <img src="'. $this->original_image .'">';
+    $content[] = '            </a>';
+  } else {
+    $content[] = '          <div class="original_photo_error">';
+    $content[] = '            Kein Originalbild vorhanden';
+    $content[] = '          </div>';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="offer_photo fl">';
+
+  if(isset($this->offer_image)) {
+    $content[] = '            <a id="original" href="'. $this->offer_image .'">';
+    $content[] = '              <img src="'. $this->offer_image .'">';
+    $content[] = '            </a>';
+  } else {
+    $content[] = '          <div class="offer_photo_error">';
+    $content[] = '            Kein Angebotsbild vorhanden';
+    $content[] = '          </div>';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="cb"></div>';
+
+  $content[] = '          <div class="offer_photo">';
+  $content[] = '          </div>';
+  $content[] = '        </div>';
+  $content[] = '      </div>';
+
+
+  /**
+   * Google
+   */
+  $content[] = '      <div class="sheet fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="map"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-head fl">';
+  $content[] = '          Standort';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:75px;">Akquise Standort via Google Map</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-google-body">';
+  if($this->aq) {
+      $content[] = '          <div style="display:none;" id="google_address">'.$this->aq->address.'</div>';
+  $content[] = '          <div style="display:none;" id="google_zip_code">'.$this->aq->zip_code.'</div>';
+  $content[] = '          <div style="display:none;" id="google_city">'.$this->aq->city.'</div>';
+  $content[] = '          <div id="google_map">';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '      </div>';
+
+  $content[] = '      <div class="cb"></div>';
+} else {
+
+  /**
+   * Google
+   */
+  $content[] = '      <div class="sheet fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="map"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-head fl">';
+  $content[] = '          Standort';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:75px;">Akquise Standort via Google Map</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-google-body">';
+  if($this->aq) {
+      $content[] = '          <div style="display:none;" id="google_address">'.$this->aq->address.'</div>';
+  $content[] = '          <div style="display:none;" id="google_zip_code">'.$this->aq->zip_code.'</div>';
+  $content[] = '          <div style="display:none;" id="google_city">'.$this->aq->city.'</div>';
+  $content[] = '          <div id="google_map">';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '      </div>';
+
+  $content[] = '      <div class="cb"></div>';
+
+
+  /**
+   * Images
+   */
+  $content[] = '      <div class="sheet fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="camera"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-head fl">';
+  $content[] = '          Foto Montage';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:75px;">Originalbild</div>';
+  $content[] = '          <div class="fl" style="margin-left:125px;">Angebotsbild</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div class="sheet-images-body">';
+  $content[] = '          <div class="original_photo fl">';
+
+  if($this->original_image) {
+    $content[] = '            <a id="original" href="'. $this->original_image .'">';
+    $content[] = '              <img src="'. $this->original_image .'">';
+    $content[] = '            </a>';
+  } else {
+    $content[] = '          <div class="original_photo_error">';
+    $content[] = '            Kein Originalbild vorhanden';
+    $content[] = '          </div>';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="offer_photo fl">';
+
+  if(isset($this->offer_image)) {
+    $content[] = '            <a id="original" href="'. $this->offer_image .'">';
+    $content[] = '              <img src="'. $this->offer_image .'">';
+    $content[] = '            </a>';
+  } else {
+    $content[] = '          <div class="offer_photo_error">';
+    $content[] = '            Kein Angebotsbild vorhanden';
+    $content[] = '          </div>';
+  }
+
+  $content[] = '          </div>';
+  $content[] = '          <div class="cb"></div>';
+
+  $content[] = '          <div class="offer_photo">';
+  $content[] = '          </div>';
+  $content[] = '        </div>';
+  $content[] = '      </div>';
+
+}
+
+if(isset($this->partner_offer->offer) && $this->partner_offer->offer == 1) {
+
+  $content[] = '      <div id="sheet-boa-data" class="sheet-boa fl">';
+  $content[] = '        <div class="sheet-icon-holder fl">';
+  $content[] = '          <div class="bag"></div>';
+  $content[] = '        </div>';
+  $content[] = '        <div id="button_client" class="sheet-head active attachment-click fl">';
+  $content[] = '          Mandant';
+  $content[] = '        </div>';
+  $content[] = '        <div id="button_land_registry" class="sheet-head attachment-click fl">';
+  $content[] = '          Bauamt';
+  $content[] = '        </div>';
+  $content[] = '        <div id="button_court" class="sheet-head attachment-click fl">';
+  $content[] = '          Gericht';
+  $content[] = '        </div>';
+  $content[] = '        <div id="button_lawyer" class="sheet-head attachment-click fl">';
+  $content[] = '          Rechtsanwalt';
+  $content[] = '        </div>';
+  $content[] = '        <div class="cb"></div>';
+  $content[] = '        <div class="sheet-head-small">';
+  $content[] = '          <div class="fl" style="margin-left:25px;">Datum / Uhrzeit</div>';
+  $content[] = '          <div class="fl" style="margin-left:100px;">Datei</div>';
+  $content[] = '          <div class="fl" style="margin-left:550px;">Download</div>';
+  $content[] = '          <div class="cb"></div>';
+  $content[] = '        </div>';
+
+
+
+
+	$content[] = '        <div id="client" class="sheet-attachments">';
+	$content[] = '        	<div class="attachments">';
+
+	if($this->client_attachments && count($this->client_attachments) > 0) {
+	  foreach($this->client_attachments as $key => $attachment) {
+
+	    $att = Array();
+	    $att['timestamp'] = substr($attachment, 0, 14);
+	    $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+	    $att['name'] = substr($attachment, 15);
+
+	    $content[] = '        	  <div class="attachment">';
+	    $content[] = '          	  <div class="date fl">';
+	    $content[] = '            	  ' . $att['date'];
+	    $content[] = '          	  </div>';
+	    $content[] = '          	  <div class="attachment fl">';
+	    $content[] = '            	  ' . $att['name'];
+	    $content[] = '          	  </div>';
+	    $content[] = '          	  <div class="download fl">';
+	    $content[] = '          	    <a href="/data/client_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'" target="_blank" style="font-size:18px;">&#10225;</a>';
+	    $content[] = '          	  </div>';
+	    $content[] = '          	  <div class="delete fl">';
+	    $content[] = '          	    <a onClick="deleteFile(this, \''.$this->config->user_upload_dir.'/client_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'\')" style="font-size:18px;">X</a>';
+	    $content[] = '          	  </div>';
+	    $content[] = '          	  <div class="cb"></div>';
+	    $content[] = '        	  </div>';
+	  }
+	}
+
+	$content[] = '        	</div>';
+	$content[] = '				  <form name="client-att-form" id="client-att-form" method="post" enctype="multipart/form-data">';
+	$content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="client-attachment-upload" id="client-attachment-upload">';
+	$content[] = '				  </form>';
+	$content[] = '          <div class="cb"></div>';
+	$content[] = '        </div>';
+
+
+	$content[] = '        <div id="land_registry" class="sheet-attachments">';
+	$content[] = '        	<div class="attachments">';
+	if($this->land_registry_attachments && count($this->land_registry_attachments) > 0) {
+	  foreach($this->land_registry_attachments as $key => $attachment) {
+
+	    $att = Array();
+	    $att['timestamp'] = substr($attachment, 0, 14);
+	    $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+	    $att['name'] = substr($attachment, 15);
+	    $content[] = '        	  <div class="attachment">';
+	    $content[] = '          	<div class="date fl">';
+	    $content[] = '            	' . $att['date'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="attachment fl">';
+	    $content[] = '            	' . $att['name'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	  <div class="download fl">';
+	    $content[] = '          	    <a href="/data/land_registry_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'" target="_blank" style="font-size:18px;">&#10225;</a>';
+	    $content[] = '          	  </div>';
+	    $content[] = '          	  <div class="delete fl">';
+	    $content[] = '          	    <a onClick="deleteFile(this, \''.$this->config->user_upload_dir.'/land_registry_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'\')" style="font-size:18px;">X</a>';
+	    $content[] = '          	  </div>';
+	    $content[] = '          	<div class="cb"></div>';
+	    $content[] = '          	</div>';
+	  }
+	}
+	$content[] = '        	</div>';
+	$content[] = '				  <form name="land-registry-att-form" id="land-registry-att-form" method="post" enctype="multipart/form-data">';
+	$content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="land-registry-attachment-upload" id="land-registry-attachment-upload">';
+	$content[] = '				  </form>';
+	$content[] = '          <div class="cb"></div>';
+	$content[] = '        </div>';
+
+
+
+
+
+
+	$content[] = '        <div id="court" class="sheet-attachments">';
+	$content[] = '        	<div class="attachments">';
+
+	if($this->court_attachments && count($this->court_attachments) > 0) {
+	  foreach($this->court_attachments as $key => $attachment) {
+	    $att = Array();
+	    $att['timestamp'] = substr($attachment, 0, 14);
+	    $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+	    $att['name'] = substr($attachment, 15);
+
+	    $content[] = '        	  <div class="attachment">';
+	    $content[] = '          	<div class="date fl">';
+	    $content[] = '            	' . $att['date'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="attachment fl">';
+	    $content[] = '            	' . $att['name'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="download fl">';
+	    $content[] = '          	  <a href="/data/court_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'" target="_blank" style="font-size:18px;">&#10225;</a>';
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="delete fl">';
+	    $content[] = '          	  <a onClick="deleteFile(this, \''.$this->config->user_upload_dir.'/court_attachments/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'\')" style="font-size:18px;">X</a>';
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="cb"></div>';
+	    $content[] = '          	</div>';
+	  }
+	}
+	$content[] = '        	</div>';
+	$content[] = '				  <form name="court-att-form" id="court-att-form" method="post" enctype="multipart/form-data">';
+	$content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="court-attachment-upload" id="court-attachment-upload">';
+	$content[] = '				  </form>';
+	$content[] = '          <div class="cb"></div>';
+	$content[] = '        </div>';
+
+
+
+
+	$content[] = '        <div id="lawyer" class="sheet-attachments">';
+	$content[] = '        	<div class="attachments">';
+	if($this->lawyer_attachments && count($this->lawyer_attachments) > 0) {
+	  foreach($this->lawyer_attachments as $key => $attachment) {
+
+	    $att = Array();
+	    $att['timestamp'] = substr($attachment, 0, 14);
+	    $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+	    $att['name'] = substr($attachment, 15);
+
+	    $content[] = '        	  <div class="attachment">';
+	    $content[] = '          	<div class="date fl">';
+	    $content[] = '            	' . $att['date'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="attachment fl">';
+	    $content[] = '            	' . $att['name'];
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="download fl">';
+	    $content[] = '          	  <a href="/data/lawyer_attachment/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'" target="_blank" style="font-size:18px;">&#10225;</a>';
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="delete fl">';
+	    $content[] = '          	  <a onClick="deleteFile(this, \''.$this->config->user_upload_dir.'/lawyer_attachment/'.$this->aq->id.'/'.$att['timestamp'] . '_' . $att['name'].'\')" style="font-size:18px;">X</a>';
+	    $content[] = '          	</div>';
+	    $content[] = '          	<div class="cb"></div>';
+	    $content[] = '          	</div>';
+	  }
+	}
+
+  $content[] = '      </div>';
+  $content[] = '      <div class="cb"></div>';
+}
+
+
+}
+
+
+
+
+
+if($this->iPartnerId == 25 || $this->iPartnerId == 29) {
+
+    $content[] = '      <div class="sheet fl">';
+    $content[] = '        <div class="sheet-icon-holder fl">';
+    $content[] = '          <div class="place"></div>';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl">';
+    $content[] = '          Erfassung';
+    $content[] = '        </div>';
+    $content[] = '        <div class="cb"></div>';
+    $content[] = '        <div class="sheet-head-small">';
+    $content[] = '          <div class="fl" style="margin-left:75px;">Datenblatt</div>';
+    $content[] = '          <div class="fl" style="margin-left:25px;">Datensatz</div>';
+    $content[] = '          <div class="cb"></div>';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-recording-body">';
+    $content[] = '          <div class="head-company">'.Drunken_Companies::translateCompanyId($this->aq->companies_id).'</div>';
+    $content[] = '          <hr>';
+    $content[] = '          <div class="sheet-left fl">';
+
+    if(isset($this->partner_offer) && $this->partner_offer->accepted == 1) {
+        $content[] = '            <div class="txt">Aktueller Status</div>';
+    }
+    $content[] = '            <div class="txt">AQ-Nummer</div>';
+    $content[] = '            <div class="txt">Anrede</div>';
+    $content[] = '            <div class="txt">Unternehmen</div>';
+    $content[] = '            <div class="txt">Ansprechpartner</div>';
+    $content[] = '            <div class="txt">Vorname</div>';
+    $content[] = '            <div class="txt">Nachname</div>';
+    $content[] = '            <div class="txt">Adresse</div>';
+    $content[] = '            <div class="txt">PLZ</div>';
+    $content[] = '            <div class="txt">ORT</div>';
+    $content[] = '            <div class="txt">Telefon</div>';
+    $content[] = '            <div class="txt">Mobil</div>';
+    $content[] = '            <div class="txt">E-Mail</div>';
+    $content[] = '            <div class="txt">Info</div>';
+    $content[] = '          </div>';
+    $content[] = '          <div class="sheet-right fl">';
+    if(isset($this->partner_offer) && $this->partner_offer->accepted == 1) {
+        $content[] = '            <div class="txt">'.Drunken_Status::translateStatusId($this->aq->current_status->status_id).'</div>';
+    }
+    $content[] = '            <div class="txt">'.$this->aq->id.' / '.$this->aq->owner->id.'</div>';
+    $content[] = '            <div class="txt">'.Drunken_Salutations::translateSalutation($this->aq->owner->salutation).'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->company.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->contact_person.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->first_name.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->last_name.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->address.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->zip_code.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->city.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->phone.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->mobile.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->owner->email.'</div>';
+    $content[] = '            <div class="txt" style="height:auto;">'.$this->aq->owner->notice.'</div>';
+    $content[] = '          </div>';
+    $content[] = '          <div class="cb"></div>';
+    $content[] = '          <hr>';
+    $content[] = '          <div class="sheet-left fl">';
+    $content[] = '            <div class="txt">Stellenart</div>';
+    $content[] = '            <div class="txt">Adresse</div>';
+    $content[] = '            <div class="txt">PLZ</div>';
+    $content[] = '            <div class="txt">Ort</div>';
+    $content[] = '            <div class="txt">Bundesland</div>';
+    $content[] = '            <div class="txt">Mietvorschlag</div>';
+    $content[] = '            <div class="txt">Vertragsdauer</div>';
+    $content[] = '            <div class="txt">Notiz</div>';
+    $content[] = '          </div>';
+    $content[] = '          <div class="sheet-right fl">';
+    $content[] = '            <div class="txt">'.Drunken_JobTypes::translateJobTypeId($this->aq->job_types_id).'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->address.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->zip_code.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->city.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->state.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->rent_offer.'</div>';
+    $content[] = '            <div class="txt">'.$this->aq->contract_duration.'</div>';
+    $content[] = '            <div class="txt" style="height:auto;">'.$this->aq->acquisition_description.'</div>';
+    $content[] = '          </div>';
+    $content[] = '          <div class="cb"></div>';
+    $content[] = '          <input type="hidden" name="aid" id="aid" value="'.$this->aq->id.'">';
+    $content[] = '        </div>';
+    $content[] = '      </div>';
+
+    /**
+     * Google
+     */
+    $content[] = '      <div class="sheet fl">';
+    $content[] = '        <div class="sheet-icon-holder fl">';
+    $content[] = '          <div class="map"></div>';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl">';
+    $content[] = '          Standort';
+    $content[] = '        </div>';
+    $content[] = '        <div class="cb"></div>';
+    $content[] = '        <div class="sheet-head-small">';
+    $content[] = '          <div class="fl" style="margin-left:75px;">Akquise Standort via Google Map</div>';
+    $content[] = '          <div class="cb"></div>';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-google-body">';
+    if($this->aq) {
+        $content[] = '          <div style="display:none;" id="google_address">'.$this->aq->address.'</div>';
+        $content[] = '          <div style="display:none;" id="google_zip_code">'.$this->aq->zip_code.'</div>';
+        $content[] = '          <div style="display:none;" id="google_city">'.$this->aq->city.'</div>';
+        $content[] = '          <div id="google_map">';
+    }
+
+    $content[] = '          </div>';
+    $content[] = '          <div class="cb"></div>';
+    $content[] = '        </div>';
+    $content[] = '      </div>';
+
+    $content[] = '      <div class="cb"></div>';
+
+    $content[] = '      <div id="sheet-boa-data" class="sheet-boa fl">';
+    $content[] = '        <div class="sheet-icon-holder fl">';
+    $content[] = '          <div class="bag"></div>';
+    $content[] = '        </div>';
+    $content[] = '        <div id="button_client" class="sheet-head active attachment-click fl">';
+    $content[] = '          OBI - Ist Zustand';
+    $content[] = '        </div>';
+    $content[] = '        <div id="button_land_registry" class="sheet-head attachment-click fl">';
+    $content[] = '          OBI - Soll Zustand';
+    $content[] = '        </div>';
+    $content[] = '        <div id="button_court" class="sheet-head attachment-click fl">';
+    $content[] = '          OBI - Sonstige';
+    $content[] = '        </div>';
+    $content[] = '        <div class="cb"></div>';
+    $content[] = '        <div class="sheet-head-small">';
+
+    if($this->iPartnerId == 25 || $this->iPartnerId == 29) {
+
+    } else {
+        $content[] = '          <div class="fl" style="margin-left:25px;">Datum / Uhrzeit</div>';
+        $content[] = '          <div class="fl" style="margin-left:100px;">Datei</div>';
+        $content[] = '          <div class="fl" style="margin-left:550px;">Download</div>';
+        $content[] = '          <div class="cb"></div>';
+    }
+
+    $content[] = '        </div>';
+
+
+    if($this->iPartnerId != 25 && $this->iPartnerId != 29) {
+        $content[] = '        <div id="client" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+
+        if ($this->client_attachments && count($this->client_attachments) > 0) {
+            foreach ($this->client_attachments as $key => $attachment) {
+
+                $att = Array();
+                $att['timestamp'] = substr($attachment, 0, 14);
+                $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+                $att['name'] = substr($attachment, 15);
+
+                $content[] = '        	  <div class="attachment">';
+                $content[] = '          	  <div class="date fl">';
+                $content[] = '            	  ' . $att['date'];
+                $content[] = '          	  </div>';
+                $content[] = '          	  <div class="attachment fl">';
+                $content[] = '            	  ' . $att['name'];
+                $content[] = '          	  </div>';
+                $content[] = '          	  <div class="download fl">';
+                $content[] = '          	    <a href="/data/client_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '" target="_blank" style="font-size:18px;">&#10225;</a>';
+                $content[] = '          	  </div>';
+                $content[] = '          	  <div class="delete fl">';
+                $content[] = '          	    <a onClick="deleteFile(this, \'' . $this->config->user_upload_dir . '/client_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '\')" style="font-size:18px;">X</a>';
+                $content[] = '          	  </div>';
+                $content[] = '          	  <div class="cb"></div>';
+                $content[] = '        	  </div>';
+            }
+        }
+
+        $content[] = '        	</div>';
+        $content[] = '				  <form name="client-att-form" id="client-att-form" method="post" enctype="multipart/form-data">';
+        $content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="client-attachment-upload" id="client-attachment-upload">';
+        $content[] = '				  </form>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+
+
+        $content[] = '        <div id="land_registry" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+        if ($this->land_registry_attachments && count($this->land_registry_attachments) > 0) {
+            foreach ($this->land_registry_attachments as $key => $attachment) {
+
+                $att = Array();
+                $att['timestamp'] = substr($attachment, 0, 14);
+                $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+                $att['name'] = substr($attachment, 15);
+                $content[] = '        	  <div class="attachment">';
+                $content[] = '          	<div class="date fl">';
+                $content[] = '            	' . $att['date'];
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="attachment fl">';
+                $content[] = '            	' . $att['name'];
+                $content[] = '          	</div>';
+                $content[] = '          	  <div class="download fl">';
+                $content[] = '          	    <a href="/data/land_registry_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '" target="_blank" style="font-size:18px;">&#10225;</a>';
+                $content[] = '          	  </div>';
+                $content[] = '          	  <div class="delete fl">';
+                $content[] = '          	    <a onClick="deleteFile(this, \'' . $this->config->user_upload_dir . '/land_registry_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '\')" style="font-size:18px;">X</a>';
+                $content[] = '          	  </div>';
+                $content[] = '          	<div class="cb"></div>';
+                $content[] = '          	</div>';
+            }
+        }
+        $content[] = '        	</div>';
+        $content[] = '				  <form name="land-registry-att-form" id="land-registry-att-form" method="post" enctype="multipart/form-data">';
+        $content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="land-registry-attachment-upload" id="land-registry-attachment-upload">';
+        $content[] = '				  </form>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+
+        $content[] = '        <div id="court" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+
+        if ($this->court_attachments && count($this->court_attachments) > 0) {
+            foreach ($this->court_attachments as $key => $attachment) {
+                $att = Array();
+                $att['timestamp'] = substr($attachment, 0, 14);
+                $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+                $att['name'] = substr($attachment, 15);
+
+                $content[] = '        	  <div class="attachment">';
+                $content[] = '          	<div class="date fl">';
+                $content[] = '            	' . $att['date'];
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="attachment fl">';
+                $content[] = '            	' . $att['name'];
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="download fl">';
+                $content[] = '          	  <a href="/data/court_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '" target="_blank" style="font-size:18px;">&#10225;</a>';
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="delete fl">';
+                $content[] = '          	  <a onClick="deleteFile(this, \'' . $this->config->user_upload_dir . '/court_attachments/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '\')" style="font-size:18px;">X</a>';
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="cb"></div>';
+                $content[] = '          	</div>';
+            }
+        }
+        $content[] = '        	</div>';
+        $content[] = '				  <form name="court-att-form" id="court-att-form" method="post" enctype="multipart/form-data">';
+        $content[] = '				    <input style="margin-top:10px;" class="fl" type="file" name="court-attachment-upload" id="court-attachment-upload">';
+        $content[] = '				  </form>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+
+
+        $content[] = '        <div id="lawyer" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+        if ($this->lawyer_attachments && count($this->lawyer_attachments) > 0) {
+            foreach ($this->lawyer_attachments as $key => $attachment) {
+
+                $att = Array();
+                $att['timestamp'] = substr($attachment, 0, 14);
+                $att['date'] = substr($attachment, 6, 2) . '.' . substr($attachment, 4, 2) . '.' . substr($attachment, 0, 4) . ' ' . substr($attachment, 8, 2) . ':' . substr($attachment, 10, 2) . ' Uhr';
+                $att['name'] = substr($attachment, 15);
+
+                $content[] = '        	  <div class="attachment">';
+                $content[] = '          	<div class="date fl">';
+                $content[] = '            	' . $att['date'];
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="attachment fl">';
+                $content[] = '            	' . $att['name'];
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="download fl">';
+                $content[] = '          	  <a href="/data/lawyer_attachment/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '" target="_blank" style="font-size:18px;">&#10225;</a>';
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="delete fl">';
+                $content[] = '          	  <a onClick="deleteFile(this, \'' . $this->config->user_upload_dir . '/lawyer_attachment/' . $this->aq->id . '/' . $att['timestamp'] . '_' . $att['name'] . '\')" style="font-size:18px;">X</a>';
+                $content[] = '          	</div>';
+                $content[] = '          	<div class="cb"></div>';
+                $content[] = '          	</div>';
+            }
+        }
+
+        $content[] = '      </div>';
+        $content[] = '      <div class="cb"></div>';
+    } else {
+
+        $content[] = '        <div id="client" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+
+        foreach($this->obi_is_attachments['images'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a target="_blank" href="'.$att['url'].'">';
+            $content[] = '      <img src="'.$att['thumb'].'" title="'.$att['name'].'">';
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name ng-binding">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+
+        foreach($this->obi_is_attachments['data'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a href="'.$att['url'].'" target="_blank">';
+            if(strpos($att['url'], '.txt') !== false) {
+                $content[] = '      <i class="far fa-file-alt fa-5x"></i>';
+            } else if(strpos($att['url'], '.pdf') !== false) {
+                $content[] = '      <i class="far fa-file-pdf"></i>';
+            } else if(strpos($att['url'], '.docx') !== false || strpos($att['url'], '.doc') !== false) {
+                $content[] = '      <i class="far fa-file-word"></i>';
+            } else if(strpos($att['url'], '.xlsx') !== false || strpos($att['url'], '.xls') !== false || strpos($att['url'], '.csv') !== false) {
+                $content[] = '      <i class="far fa-file-excel"></i>';
+            }
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+        $content[] = '        	</div>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+
+
+
+
+        $content[] = '        <div id="land_registry" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+
+        foreach($this->obi_should_attachments['images'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a target="_blank" href="'.$att['url'].'">';
+            $content[] = '      <img src="'.$att['thumb'].'" title="'.$att['name'].'">';
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name ng-binding">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+
+        foreach($this->obi_should_attachments['data'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a href="'.$att['url'].'" target="_blank">';
+            if(strpos($att['url'], '.txt') !== false) {
+                $content[] = '      <i class="far fa-file-alt fa-5x"></i>';
+            } else if(strpos($att['url'], '.pdf') !== false) {
+                $content[] = '      <i class="far fa-file-pdf"></i>';
+            } else if(strpos($att['url'], '.docx') !== false || strpos($att['url'], '.doc') !== false) {
+                $content[] = '      <i class="far fa-file-word"></i>';
+            } else if(strpos($att['url'], '.xlsx') !== false || strpos($att['url'], '.xls') !== false || strpos($att['url'], '.csv') !== false) {
+                $content[] = '      <i class="far fa-file-excel"></i>';
+            }
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+        $content[] = '        	</div>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+
+
+
+
+        $content[] = '        <div id="court" class="sheet-attachments">';
+        $content[] = '        	<div class="attachments">';
+
+        foreach($this->obi_other_attachments['images'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a target="_blank" href="'.$att['url'].'">';
+            $content[] = '      <img src="'.$att['thumb'].'" title="'.$att['name'].'">';
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name ng-binding">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+
+        foreach($this->obi_other_attachments['data'] as $key => $att) {
+            $content[] = '<div class="gallery-attachment ng-scope">';
+            $content[] = '  <div class="thumbnail">';
+            $content[] = '    <a href="'.$att['url'].'" target="_blank">';
+            if(strpos($att['url'], '.txt') !== false) {
+                $content[] = '      <i class="far fa-file-alt fa-5x"></i>';
+            } else if(strpos($att['url'], '.pdf') !== false) {
+                $content[] = '      <i class="far fa-file-pdf"></i>';
+            } else if(strpos($att['url'], '.docx') !== false || strpos($att['url'], '.doc') !== false) {
+                $content[] = '      <i class="far fa-file-word"></i>';
+            } else if(strpos($att['url'], '.xlsx') !== false || strpos($att['url'], '.xls') !== false || strpos($att['url'], '.csv') !== false) {
+                $content[] = '      <i class="far fa-file-excel"></i>';
+            }
+            $content[] = '    </a>';
+            $content[] = '  </div>';
+            $content[] = '  <div class="gallery-image-name">';
+            $content[] = '    ' . $att['name'];
+            $content[] = '  </div>';
+            $content[] = '</div>';
+        }
+
+        $content[] = '        	</div>';
+        $content[] = '          <div class="cb"></div>';
+        $content[] = '        </div>';
+    }
+}
+
+$content[] = '        <div id="body-spinner" class="spinner fl" style="position:absolute; left:calc(50% - 25px); top:calc(50% - 20px); display:none;">';
+$content[] = '          <div class="rect1"></div>';
+$content[] = '          <div class="rect2"></div>';
+$content[] = '          <div class="rect3"></div>';
+$content[] = '          <div class="rect4"></div>';
+$content[] = '          <div class="rect5"></div>';
+$content[] = '        </div>';
+
+
+$content[] = '  </div>';
+$content[] = '</div>';
+
+if($this->aq->longitude && $this->aq->latitude) {
+	$content[] = '<input type="hidden" name="longitude" id="longitude" value="'.$this->aq->longitude.'">';
+	$content[] = '<input type="hidden" name="latitude" id="latitude" value="'.$this->aq->latitude.'">';
+}
+?>

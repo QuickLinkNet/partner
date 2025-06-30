@@ -1,0 +1,1165 @@
+<?php
+
+
+
+
+$content[] = '<div id="content-wrapper">';
+$content[] = '  <div id="content">';
+$content[] = '    <div id="content-inner">';
+$content[] = '      <div id="partner-offer">';
+
+$content[] = '        <div class="sheet-icon-holder fl">';
+$content[] = '          <div class="partner"></div>';
+$content[] = '        </div>';
+
+if($this->iUserId == 25 || $this->iUserId == 29) {
+    $content[] = '        <div class="sheet-head fl active" id="obi-de">';
+    $content[] = '          Obi - Deutschland';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="obi-at">';
+    $content[] = '          Obi - Österreich';
+    $content[] = '        </div>';
+} else {
+    $content[] = '        <div class="sheet-head fl active" id="partner-active">';
+    $content[] = '          Aktive';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="partner-inactive">';
+    $content[] = '          Inaktiv';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="partner-progress">';
+    $content[] = '          In Bearb.';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="partner-contract-interest">';
+    $content[] = '          V-Interes.';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="partner-contract-cancel">';
+    $content[] = '          V-Aabsagen';
+    $content[] = '        </div>';
+    $content[] = '        <div class="sheet-head fl" id="partner-ba-completed">';
+    $content[] = '          BA abgeschlossen';
+    $content[] = '        </div>';
+}
+
+$content[] = '        <div class="spinner first fl">';
+$content[] = '          <div class="rect1"></div>';
+$content[] = '          <div class="rect2"></div>';
+$content[] = '          <div class="rect3"></div>';
+$content[] = '          <div class="rect4"></div>';
+$content[] = '          <div class="rect5"></div>';
+$content[] = '        </div>';
+
+if($this->iUserId != 25 && $this->iUserId != 29) {
+    $content[] = '        <div id="sheet-pagination-first" class="sheet-pagination fr">';
+} else {
+    $content[] = '        <div id="sheet-pagination-first" class="sheet-pagination fr dnone">';
+}
+
+$content[] = '          <div class="back first fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="first-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward first fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_first">';
+
+if(!isset($_POST['max_first']) || $_POST['max_first'] == '') {
+  $max_first = 25;
+}
+
+if(isset($max_first) && $max_first == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_first) && $max_first == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_first) && $max_first == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_first) && $max_first == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_first) && $max_first == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-first'])) {
+  $site_first = $_POST['site-first'];
+} else {
+  $site_first = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-first" id="site-first" value="'.$site_first.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+$content[] = '        <div id="sheet-pagination-second" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back second fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="second-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward second fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_second">';
+
+if(!isset($_POST['max_second']) || $_POST['max_second'] == '') {
+  $max_second = 25;
+}
+
+if(isset($max_second) && $max_second == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_second) && $max_second == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_second) && $max_second == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_second) && $max_second == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_second) && $max_second == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-second'])) {
+  $site_second = $_POST['site-second'];
+} else {
+  $site_second = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-second" id="site-second" value="'.$site_second.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+$content[] = '        <div id="sheet-pagination-third" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back third fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="third-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward third fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_third">';
+
+if(!isset($_POST['max_third']) || $_POST['max_third'] == '') {
+  $max_third = 25;
+}
+
+if(isset($max_third) && $max_third == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_third) && $max_third == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_third) && $max_third == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_third) && $max_third == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_third) && $max_third == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-third'])) {
+  $site_third = $_POST['site-third'];
+} else {
+  $site_third = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-third" id="site-third" value="'.$site_third.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+$content[] = '        <div id="sheet-pagination-fourth" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back fourth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="fourth-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward fourth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_fourth">';
+
+if(!isset($_POST['max_fourth']) || $_POST['max_fourth'] == '') {
+  $max_fourth = 25;
+}
+
+if(isset($max_fourth) && $max_fourth == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_fourth) && $max_fourth == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_fourth) && $max_fourth == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_fourth) && $max_fourth == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_fourth) && $max_fourth == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-fourth'])) {
+  $site_fourth = $_POST['site-fourth'];
+} else {
+  $site_fourth = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-fourth" id="site-fourth" value="'.$site_fourth.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+
+$content[] = '        <div id="sheet-pagination-fifth" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back fifth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="fifth-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward fifth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_fifth">';
+
+if(!isset($_POST['max_fifth']) || $_POST['max_fifth'] == '') {
+  $max_fifth = 25;
+}
+
+if(isset($max_fifth) && $max_fifth == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_fifth) && $max_fifth == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_fifth) && $max_fifth == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_fifth) && $max_fifth == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_fifth) && $max_fifth == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-fifth'])) {
+  $site_fifth = $_POST['site-fifth'];
+} else {
+  $site_fifth = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-fifth" id="site-fifth" value="'.$site_fifth.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+
+$content[] = '        <div id="sheet-pagination-sixth" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back sixth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="sixth-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward sixth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_sixth">';
+
+if(!isset($_POST['max_sixth']) || $_POST['max_sixth'] == '') {
+  $max_sixth = 25;
+}
+
+if(isset($max_sixth) && $max_sixth == 5) {
+  $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+  $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_sixth) && $max_sixth == 10) {
+  $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+  $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_sixth) && $max_sixth == 25) {
+  $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+  $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_sixth) && $max_sixth == 50) {
+  $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+  $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_sixth) && $max_sixth == 100) {
+  $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+  $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-sixth'])) {
+  $site_sixth = $_POST['site-sixth'];
+} else {
+  $site_sixth = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-sixth" id="site-sixth" value="'.$site_sixth.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+
+
+$content[] = '        <div id="sheet-pagination-seventh" class="sheet-pagination fr">';
+$content[] = '          <div class="back seventh fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="seventh-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward seventh fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_seventh">';
+
+if(!isset($_POST['max_seventh']) || $_POST['max_seventh'] == '') {
+    $max_seventh = 25;
+}
+
+if(isset($max_seventh) && $max_seventh == 5) {
+    $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+    $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_seventh) && $max_seventh == 10) {
+    $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+    $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_seventh) && $max_seventh == 25) {
+    $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+    $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_seventh) && $max_seventh == 50) {
+    $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+    $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_seventh) && $max_seventh == 100) {
+    $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+    $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-seventh'])) {
+    $site_seventh = $_POST['site-seventh'];
+} else {
+    $site_seventh = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-seventh" id="site-seventh" value="'.$site_seventh.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+
+
+
+
+$content[] = '        <div id="sheet-pagination-eighth" class="sheet-pagination fr dnone">';
+$content[] = '          <div class="back eighth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fl" id="eighth-pagination">';
+$content[] = '          </div>';
+$content[] = '          <div class="forward eighth fl cp">';
+$content[] = '            <div class="inner">';
+$content[] = '              <div class="arrow">';
+$content[] = '              </div>';
+$content[] = '            </div>';
+$content[] = '          </div>';
+$content[] = '          <div class="fr" id="max-holder">';
+$content[] = '              <select name="count" id="max_eighth">';
+
+if(!isset($_POST['max_eighth']) || $_POST['max_eighth'] == '') {
+    $max_eighth = 25;
+}
+
+if(isset($max_eighth) && $max_eighth == 5) {
+    $content[] = '            <option value="5" selected="selected">5</option>';
+} else {
+    $content[] = '            <option value="5">5</option>';
+}
+
+if(isset($max_eighth) && $max_eighth == 10) {
+    $content[] = '            <option value="10" selected="selected">10</option>';
+} else {
+    $content[] = '            <option value="10">10</option>';
+}
+
+if(isset($max_eighth) && $max_eighth == 25) {
+    $content[] = '            <option value="25" selected="selected">25</option>';
+} else {
+    $content[] = '            <option value="25">25</option>';
+}
+
+if(isset($max_eighth) && $max_eighth == 50) {
+    $content[] = '            <option value="50" selected="selected">50</option>';
+} else {
+    $content[] = '            <option value="50">50</option>';
+}
+
+if(isset($max_eighth) && $max_eighth == 100) {
+    $content[] = '            <option value="100" selected="selected">100</option>';
+} else {
+    $content[] = '            <option value="100">100</option>';
+}
+
+$content[] = '            </select>';
+
+if(isset($_POST['site-eighth'])) {
+    $site_eighth = $_POST['site-eighth'];
+} else {
+    $site_eighth = '1';
+}
+
+$content[] = '            <input type="hidden" name="site-eighth" id="site-eighth" value="'.$site_eighth.'">';
+$content[] = '          </div>';
+$content[] = '          <div class="cb"></div>';
+$content[] = '        </div>';
+
+
+
+
+
+
+$content[] = '        <div class="cb"></div>';
+
+
+
+
+if($this->iUserId == 25 || $this->iUserId == 29) {
+    $content[] = '        <div id="seventh">';
+    $content[] = '        <div id="search_seventh">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="obi_de_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-seventh" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-seventh" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-seventh" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-seventh" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-seventh" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-seventh" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-seventh">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+    $content[] = '        <div id="eighth" class="dnone">';
+    $content[] = '        <div id="search_eighth" class="dnone">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="obi_at_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-eighth" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-eighth" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-eighth" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-eighth" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-eighth" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-eighth" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-eighth">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+} else {
+    $content[] = '        <div id="first">';
+    $content[] = '        <div id="search_first">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="active_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-first" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-first" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-first" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-first" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-first" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-first" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-first">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+
+    $content[] = '        <div id="second" class="dnone">';
+    $content[] = '        <div id="search_second">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="inactive_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-second" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-second" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-second" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-second" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-second" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-second" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-second">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+
+    $content[] = '        <div id="third" class="dnone">';
+    $content[] = '        <div id="search_third">';
+    $content[] = '				<div style="width:200px;" class="fr button" id="export">Aktuelle Anzeige Exportieren</div>';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="in_progress_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-third" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-third" data="acquisition_okz">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">OKZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-third" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-third" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_job_type_name">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Typ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_quantity">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Anzahl</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_rent_offer">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Miethöhe</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_contract_duration">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Laufzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_manufacturer">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Hersteller</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-third" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-third">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+    $content[] = '        <div id="fourth" class="dnone">';
+    $content[] = '        <div id="search_fourth">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="contract_interest_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-fourth" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-fourth" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-fourth" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fourth" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fourth" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-fourth" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fourth">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+
+    $content[] = '        <div id="fifth" class="dnone">';
+    $content[] = '        <div id="search_fifth">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="contract_canceled_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-fifth" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-fifth" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-fifth" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fifth" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fifth" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-fifth" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-fifth">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+
+    $content[] = '        <div id="sixth" class="dnone">';
+    $content[] = '        <div id="search_sixth">';
+    $content[] = '        </div>';
+    $content[] = '        <table class="widefat fixed" cellspacing="0" id="ba_completed_acquisitions" cellpadding="0">';
+    $content[] = '          <thead>';
+    $content[] = '            <tr>';
+    $content[] = '              <th width="50" class="table-sort-sixth" data="acquisition_id">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ang.-Nr.</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="50" class="table-sort-sixth" data="acquisition_zip_code">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">PLZ</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-sixth" data="acquisition_city">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Ort</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-sixth" data="acquisition_address">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Adresse</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-sixth" data="acquisition_frequency">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Frequenz</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="150" class="table-sort-sixth" data="partner_offer_datetime">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Freigegeben am</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th class="table-sort-sixth">';
+    $content[] = '                <div class="fl triangle-down dnone"></div>';
+    $content[] = '                <div class="fl triangle-up dnone"></div>';
+    $content[] = '                <div class="fl">Restzeit</div>';
+    $content[] = '                <div class="cb"></div>';
+    $content[] = '              </th>';
+    $content[] = '              <th width="200">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '              <th width="40">';
+    $content[] = '                ';
+    $content[] = '              </th>';
+    $content[] = '            </tr>';
+    $content[] = '          </thead>';
+    $content[] = '          <tbody>';
+    $content[] = '          </tbody>';
+    $content[] = '        </table>';
+    $content[] = '        </div>';
+
+
+    $content[] = '        <div class="sheet-foot"></div>';
+
+    $content[] = '        <div class="cb" style="width:100%; height:50px;"></div>';
+
+    $content[] = '      </div>';
+    $content[] = '    </div>';
+    $content[] = '  </div>';
+    $content[] = '</div>';
+}
+
+
+
+$content[] = '        <div id="partner-popup" class="fl">';
+$content[] = '          <div class="box-top-big">';
+$content[] = '            <div class="fl" style="margin-top:4px;">';
+$content[] = '              <h3>Kommentar hinterlassen</h3>';
+$content[] = '            </div>';
+$content[] = '            <div class="decline_25 fr"></div>';
+$content[] = '            <div class="cb"></div>';
+$content[] = '          </div>';
+$content[] = '          <div class="box-content">';
+$content[] = '            <textarea id="partner-comment" style="width:100%;" placeholder="Kommentar"></textarea>';
+$content[] = '            <div class="cb"></div>';
+$content[] = '            <div id="send" class="fl button" style="margin-top:13px;">';
+$content[] = '              Senden';
+$content[] = '            </div>';
+$content[] = '            <div class="cb"></div>';
+$content[] = '          </div>';
+$content[] = '        </div>';
+$content[] = '        <div id="aperture" style="display:none;"></div>';
+
+if(isset($this->user_id) && $this->user_id != '') {
+	$content[] = '				<input type="hidden" name="user_id" id="user_id" value="'.$this->user_id.'">';
+}
+
+?>
